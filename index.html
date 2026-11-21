@@ -1,0 +1,297 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Crea tu cuenta</title>
+<style>
+  :root {
+    --bg:#f4f6fb; --card:#ffffff; --texto:#172033; --suave:#5d6a85; --borde:#e2e7f2;
+    --acento:#2563eb; --acento2:#1d4ed8; --ok:#16a34a; --error:#dc2626;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg:#0e1320; --card:#161c2e; --texto:#e8ecf8; --suave:#8b94b0; --borde:#2a3350; }
+  }
+  * { box-sizing:border-box; }
+  body { margin:0; min-height:100vh; display:flex; align-items:center; justify-content:center; padding:24px;
+         background:var(--bg); color:var(--texto); font-family:"Segoe UI",system-ui,-apple-system,Roboto,sans-serif; }
+  .card { width:100%; max-width:440px; background:var(--card); border:1px solid var(--borde); border-radius:18px;
+          padding:34px 30px; box-shadow:0 10px 40px rgba(20,30,60,.08); }
+  .logo { width:54px; height:54px; border-radius:15px; background:linear-gradient(135deg,var(--acento),#7c3aed);
+          display:grid; place-items:center; color:#fff; font-size:27px; margin:0 auto 16px; }
+  h1 { font-size:23px; margin:0 0 6px; text-align:center; }
+  p.sub { margin:0 0 22px; color:var(--suave); text-align:center; line-height:1.5; font-size:15px; }
+  .centro { text-align:center; }
+  .etiqueta { display:inline-block; background:rgba(22,163,74,.12); color:var(--ok); font-weight:600; font-size:12px;
+              padding:4px 10px; border-radius:999px; margin:0 auto 12px; }
+  label { display:block; font-size:13px; color:var(--suave); margin:13px 0 5px; }
+  input { width:100%; padding:12px 14px; border-radius:10px; border:1px solid var(--borde); background:transparent;
+          color:var(--texto); font-size:15px; outline:none; }
+  input:focus { border-color:var(--acento); box-shadow:0 0 0 3px rgba(37,99,235,.18); }
+  .btn { display:block; width:100%; margin-top:20px; padding:13px; border:0; border-radius:10px; background:var(--acento);
+         color:#fff; font-size:15px; font-weight:600; cursor:pointer; text-align:center; text-decoration:none; }
+  .btn:hover { background:var(--acento2); }
+  .btn:disabled { opacity:.6; cursor:wait; }
+  .google { display:flex; align-items:center; justify-content:center; gap:10px; width:100%; padding:12px; margin:0;
+            border:1px solid var(--borde); border-radius:10px; background:#fff; color:#202124; font-size:15px;
+            font-weight:600; cursor:pointer; }
+  .google:hover { background:#f1f3f4; }
+  .o { display:flex; align-items:center; gap:12px; color:var(--suave); font-size:13px; margin:18px 0 4px; }
+  .o::before, .o::after { content:""; flex:1; height:1px; background:var(--borde); }
+  .msg { margin-top:14px; font-size:14px; min-height:20px; text-align:center; color:var(--error); }
+  .cambio { margin-top:18px; text-align:center; font-size:14px; color:var(--suave); }
+  .cambio a { color:var(--acento); cursor:pointer; font-weight:600; }
+  .hide { display:none !important; }
+  ol { color:var(--suave); line-height:1.8; padding-left:20px; margin:16px 0 0; font-size:15px; }
+  .ok { color:var(--ok); font-size:46px; text-align:center; margin-bottom:4px; }
+  .pie { text-align:center; color:var(--suave); font-size:12px; margin-top:24px; }
+</style>
+</head>
+<body>
+<main class="card">
+  <div class="logo">&#128273;</div>
+
+  <section id="v-cargando"><h1>Un momento…</h1><p class="sub">Cargando.</p></section>
+
+  <!-- 1. Entrar o crear cuenta -->
+  <section id="v-inicio" class="hide">
+    <div class="centro"><span class="etiqueta hide" id="etiqueta"></span></div>
+    <h1 id="titulo-inicio">Crea tu cuenta</h1>
+    <p class="sub" id="sub-inicio">Empieza en un minuto.</p>
+
+    <button type="button" class="google" id="btn-google">
+      <svg width="18" height="18" viewBox="0 0 48 48"><path fill="#EA4335" d="M24 9.5c3.5 0 6.6 1.2 9.1 3.6l6.8-6.8C35.8 2.4 30.3 0 24 0 14.6 0 6.5 5.4 2.6 13.2l7.9 6.1C12.4 13.5 17.7 9.5 24 9.5z"/><path fill="#4285F4" d="M46.5 24.5c0-1.6-.1-3.1-.4-4.5H24v9h12.7c-.6 3-2.3 5.5-4.8 7.2l7.6 5.9c4.4-4.1 7-10.1 7-17.6z"/><path fill="#FBBC05" d="M10.5 28.7c-.5-1.5-.8-3-.8-4.7s.3-3.2.8-4.7l-7.9-6.1C.9 16.4 0 20.1 0 24s.9 7.6 2.6 10.8l7.9-6.1z"/><path fill="#34A853" d="M24 48c6.5 0 11.9-2.1 15.9-5.8l-7.6-5.9c-2.1 1.4-4.9 2.3-8.3 2.3-6.3 0-11.6-4-13.5-9.8l-7.9 6.1C6.5 42.6 14.6 48 24 48z"/></svg>
+      Continuar con Google
+    </button>
+    <div class="o">o con tu correo</div>
+
+    <form id="form-correo" autocomplete="on">
+      <div id="campos-nuevos">
+        <label for="nombre">Nombre completo</label>
+        <input id="nombre" autocomplete="name" required>
+        <label for="empresa">Empresa o firma (opcional)</label>
+        <input id="empresa" autocomplete="organization">
+        <label for="telefono">Teléfono / WhatsApp</label>
+        <input id="telefono" type="tel" autocomplete="tel" required>
+      </div>
+      <label for="correo">Correo electrónico</label>
+      <input id="correo" type="email" autocomplete="username" required>
+      <label for="clave">Contraseña (mínimo 8 caracteres)</label>
+      <input id="clave" type="password" minlength="8" autocomplete="new-password" required>
+      <button class="btn" id="btn-correo" type="submit">Crear cuenta</button>
+    </form>
+    <div id="msg" class="msg" role="alert"></div>
+    <div class="cambio" id="cambio"></div>
+  </section>
+
+  <!-- 2. Completar datos (cuando entro con Google) -->
+  <section id="v-datos" class="hide">
+    <h1>Casi listo</h1>
+    <p class="sub">Completa tus datos para terminar.</p>
+    <form id="form-datos">
+      <label for="d-nombre">Nombre completo</label>
+      <input id="d-nombre" autocomplete="name" required>
+      <label for="d-empresa">Empresa o firma (opcional)</label>
+      <input id="d-empresa" autocomplete="organization">
+      <label for="d-telefono">Teléfono / WhatsApp</label>
+      <input id="d-telefono" type="tel" autocomplete="tel" required>
+      <button class="btn" id="btn-datos" type="submit">Continuar</button>
+      <div id="msg-datos" class="msg" role="alert"></div>
+    </form>
+  </section>
+
+  <!-- 3. Confirmar correo -->
+  <section id="v-confirmar" class="hide">
+    <div class="ok">&#9993;</div>
+    <h1>Revisa tu correo</h1>
+    <p class="sub">Te enviamos un mensaje para confirmar tu correo. Ábrelo, pulsa el botón y vuelve aquí para terminar.</p>
+  </section>
+
+  <!-- 4. Listo -->
+  <section id="v-listo" class="hide">
+    <div class="ok">&#10004;</div>
+    <h1>¡Tu cuenta está lista!</h1>
+    <p class="sub" id="texto-listo"></p>
+    <a id="descarga" class="btn" href="#">Descargar la aplicación</a>
+    <ol>
+      <li>Instala la aplicación en tu computador.</li>
+      <li>Ábrela e inicia sesión con este mismo correo (o con Google).</li>
+      <li>¡Listo! Ya puedes usarla.</li>
+    </ol>
+  </section>
+
+  <!-- Error -->
+  <section id="v-error" class="hide">
+    <h1>Enlace no disponible</h1>
+    <p class="sub" id="error-texto">Este enlace no es válido. Pide uno nuevo a quien te lo envió.</p>
+  </section>
+
+  <div class="pie">Conexión segura · Tus datos están protegidos</div>
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
+<script>
+  // ───── CONFIGURA ESTO ─────
+  const SUPABASE_URL      = "https://fnabyucsurldhyfacndd.supabase.co";
+  const SUPABASE_ANON_KEY = "sb_publishable_Xz2lF4Rm6NVqDEDhSBSJkA_alDRImth";   // clave pública por diseño
+  const DESCARGA_URL      = "https://github.com/stevenquinterob40-star/registro/releases/latest/download/DIAN_Data_Processor_Setup_v1.0.exe";
+  // ──────────────────────────
+
+  const $ = (id) => document.getElementById(id);
+  const ver = (id) => {
+    ["cargando", "inicio", "datos", "confirmar", "listo", "error"].forEach((v) => $("v-" + v).classList.add("hide"));
+    $("v-" + id).classList.remove("hide");
+  };
+  $("descarga").href = DESCARGA_URL;
+
+  const sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY, {
+    auth: { detectSessionInUrl: true, persistSession: true, autoRefreshToken: true },
+  });
+  const AQUI = location.origin + location.pathname;
+
+  // ----- El enlace (?c=CODIGO) decide el tipo de cuenta. Se recuerda por si el cliente sale a Google o a su correo.
+  let CODIGO = (new URLSearchParams(location.search).get("c") || "").trim().toUpperCase();
+  try {
+    if (CODIGO) localStorage.setItem("codigo_registro", CODIGO);
+    else CODIGO = localStorage.getItem("codigo_registro") || "";
+  } catch (_) { /* sin almacenamiento: se usa solo el de la URL */ }
+  let INFO = null;   // {plan, dias} del enlace
+
+  function duracion(d) {
+    if (d >= 360 && d <= 370) return "1 año";
+    if (d >= 27 && d <= 31) return "1 mes";
+    if (d % 30 === 0 && d < 360) return (d / 30) + " meses";
+    return d + " días";
+  }
+
+  function pintarTipo() {
+    const et = $("etiqueta");
+    if (INFO && INFO.plan === "prueba") {
+      et.textContent = INFO.dias + " días de prueba gratis"; et.classList.remove("hide");
+      $("sub-inicio").textContent = "Empieza en un minuto. No necesitas tarjeta.";
+    } else if (INFO) {
+      et.textContent = "Licencia de " + duracion(INFO.dias) + " incluida"; et.classList.remove("hide");
+      $("sub-inicio").textContent = "Tu licencia ya está lista. Solo completa tus datos para empezar.";
+    } else {
+      et.classList.add("hide");
+      $("sub-inicio").textContent = "Empieza en un minuto.";
+    }
+    pintarModo();
+  }
+
+  // ----- modo: crear cuenta / iniciar sesión
+  let modoLogin = false;
+  function pintarModo() {
+    const activa = INFO && INFO.plan !== "prueba";
+    $("campos-nuevos").classList.toggle("hide", modoLogin);
+    $("nombre").required = $("telefono").required = !modoLogin;
+    $("titulo-inicio").textContent = modoLogin ? "Inicia sesión" : (activa ? "Activa tu cuenta" : "Crea tu cuenta");
+    $("btn-correo").textContent = modoLogin ? "Iniciar sesión" : (activa ? "Activar mi cuenta" : "Crear cuenta");
+    $("clave").autocomplete = modoLogin ? "current-password" : "new-password";
+    $("cambio").innerHTML = modoLogin
+      ? '¿Aún no tienes cuenta? <a id="ir-login">Créala aquí</a>'
+      : '¿Ya tienes cuenta? <a id="ir-login">Inicia sesión</a>';
+    $("ir-login").onclick = () => { modoLogin = !modoLogin; $("msg").textContent = ""; pintarModo(); };
+  }
+
+  // ----- Google
+  $("btn-google").onclick = async () => {
+    $("msg").textContent = "";
+    const { error } = await sb.auth.signInWithOAuth({ provider: "google", options: { redirectTo: AQUI } });
+    if (error) $("msg").textContent = "No se pudo iniciar con Google. Intenta con tu correo.";
+  };
+
+  // ----- Correo
+  $("form-correo").addEventListener("submit", async (e) => {
+    e.preventDefault();
+    $("msg").textContent = "";
+    const correo = $("correo").value.trim(), clave = $("clave").value;
+    if (clave.length < 8) { $("msg").textContent = "La contraseña debe tener al menos 8 caracteres."; return; }
+    $("btn-correo").disabled = true;
+    if (modoLogin) {
+      const { error } = await sb.auth.signInWithPassword({ email: correo, password: clave });
+      $("btn-correo").disabled = false;
+      if (error) { $("msg").textContent = "Correo o contraseña incorrectos."; return; }
+      await continuar();
+    } else {
+      const datos = { nombre: $("nombre").value.trim(), empresa: $("empresa").value.trim(), telefono: $("telefono").value.trim() };
+      const { data, error } = await sb.auth.signUp({ email: correo, password: clave, options: { data: datos, emailRedirectTo: AQUI } });
+      $("btn-correo").disabled = false;
+      if (error) {
+        $("msg").textContent = /registered|already/i.test(error.message)
+          ? "Ese correo ya tiene cuenta. Pulsa «Inicia sesión»."
+          : /password/i.test(error.message) ? "Contraseña muy débil: usa letras y números." : "No se pudo crear la cuenta: " + error.message;
+        return;
+      }
+      if (!data.session) { ver("confirmar"); return; }   // Supabase pide confirmar el correo
+      await continuar();
+    }
+  });
+
+  // ----- Completar datos (Google)
+  $("form-datos").addEventListener("submit", async (e) => {
+    e.preventDefault();
+    $("msg-datos").textContent = "";
+    $("btn-datos").disabled = true;
+    const r = await guardarDatos($("d-nombre").value, $("d-empresa").value, $("d-telefono").value);
+    $("btn-datos").disabled = false;
+    if (r) $("msg-datos").textContent = r;
+  });
+
+  // ----- Lógica común: devuelve un texto de error, o "" si todo salió bien
+  async function guardarDatos(nombre, empresa, telefono) {
+    const { data, error } = await sb.rpc("completar_registro",
+      { p_nombre: nombre, p_empresa: empresa, p_telefono: telefono, p_codigo: CODIGO || null });
+    if (error || !data) return "No se pudo guardar. Intenta de nuevo.";
+    if (!data.ok) return (data.motivo || "No se pudo completar el registro.") + " Tu cuenta quedó creada; contacta a quien te envió el enlace.";
+    try { localStorage.removeItem("codigo_registro"); } catch (_) {}
+    mostrarListo(data);
+    return "";
+  }
+
+  function mostrarListo(r) {
+    let texto = "Descarga la aplicación, instálala e inicia sesión.";
+    if (r.plan === "pendiente") {
+      texto = "Recibimos tu registro. Te avisaremos cuando tu cuenta esté activa.";
+    } else if (r.vence && r.vence < "2090") {
+      const f = new Date(r.vence + "T00:00:00").toLocaleDateString("es-CO", { day: "numeric", month: "long", year: "numeric" });
+      texto = "Tu acceso está activo hasta el " + f + ". Descarga la aplicación e inicia sesión.";
+    }
+    $("texto-listo").textContent = texto;
+    ver("listo");
+  }
+
+  // Con sesión: si ya dejó sus datos, aplicamos el enlace; si no, los pedimos.
+  async function continuar() {
+    const { data: { user } } = await sb.auth.getUser();
+    if (!user) { ver("inicio"); return; }
+    const meta = user.user_metadata || {};
+    if (meta.nombre && meta.telefono) {
+      const err = await guardarDatos(meta.nombre, meta.empresa || "", meta.telefono);
+      if (err) { $("error-texto").textContent = err; ver("error"); }
+    } else {
+      $("d-nombre").value = meta.full_name || meta.name || "";
+      ver("datos");
+    }
+  }
+
+  // ----- Arranque
+  (async () => {
+    const h = new URLSearchParams(location.hash.replace(/^#/, ""));
+    if (h.get("error_description")) {
+      ver("inicio"); $("msg").textContent = "El enlace venció o no es válido. Intenta de nuevo."; pintarTipo(); return;
+    }
+    const { data: { session } } = await sb.auth.getSession();
+
+    // ¿Qué dice el enlace? (se consulta aunque aún no haya sesión)
+    if (CODIGO) {
+      const { data } = await sb.rpc("info_invitacion", { p_codigo: CODIGO });
+      if (data && data.valido) INFO = { plan: data.plan, dias: data.dias };
+      else if (!session) { $("error-texto").textContent = (data && data.motivo) || "Este enlace no es válido."; ver("error"); return; }
+    }
+    pintarTipo();
+    if (session) await continuar(); else ver("inicio");
+  })();
+</script>
+</body>
+</html>
